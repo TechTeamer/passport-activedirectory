@@ -151,8 +151,15 @@ Strategy.prototype.authenticate = function (req) {
     // require the dn attribute which will be used during authentication
     if (attributes.indexOf('dn') === -1) attributes.push('dn');
 
-    return this._ad.find({ filter: filter, attributes: attributes }, function (err, results) {
-      if (err) return _this.error(err);
+    var skipFailedServer = this._options.skipFailedServer
+
+    return this._ad.find({ filter: filter, attributes: attributes, skipFailedServer: skipFailedServer }, function (err, results) {
+      if (err) {
+        if (skipFailedServer) {
+          return _this.fail(err);
+        }
+        return _this.error(err);
+      }
       if (!results || !results.users || !Array.isArray(results.users) || !results.users.length) {
         return _this.fail('The user "' + username + '" was not found');
       }

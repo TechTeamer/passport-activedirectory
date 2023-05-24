@@ -86,6 +86,7 @@ passport.use(new ActiveDirectoryStrategy({
     * `password` { `String` } - Password for username
     * [`filter`] { `Function` } - Takes `username` as its only parameter and returns an ldap query for that user
     * [`attributes`] { `Array` } - Array of attributes to include in the profile under the `profile._json` key. The `dn` property is always added because it is used to authenticate the user
+    * [`skipFailedServer`] { `Boolean` } - Try next passport strategy if an LDAP server is not reachable
 * `verify` { `Function` } - Verification function. Depending on the options supplied the signature will be one of the following
   * Signatures
     * `verify ( profile, ad, done )` - Using ldap
