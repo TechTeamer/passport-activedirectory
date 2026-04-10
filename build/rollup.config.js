@@ -1,8 +1,16 @@
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel'
 
 export default {
-  entry: 'src/strategy.js',
-  format: 'cjs',
-  plugins: [ babel() ],
-  dest: 'index.js'
+  input: 'src/strategy.js',
+  output: {
+    file: 'index.js',
+    format: 'cjs',
+    exports: 'auto', 
+  },
+  plugins: [
+    babel({
+      babelHelpers: 'bundled',
+      exclude: 'node_modules/**',
+    })
+  ]
 }
