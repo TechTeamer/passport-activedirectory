@@ -23,6 +23,7 @@
     "@babel/core": "^7.29.0",
     "@babel/preset-env": "^7.29.2",
     "@rollup/plugin-babel": "^7.0.0",
+    "improved-yarn-audit": "^3.0.4",
     "rollup": "^4.60.1",
     "rollup-plugin-babel": "^4.4.0"
   },
